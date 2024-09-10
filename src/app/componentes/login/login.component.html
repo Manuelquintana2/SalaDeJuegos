@@ -1,0 +1,21 @@
+<div class="background-image"></div>
+<div class="module form-module">
+  <div class="toggle">
+    <i class="fa fa-times fa-pencil"></i>
+  </div>
+  <div class="form">
+    <h2>Ingresa a tu cuenta</h2>
+    <input type="text" placeholder="Email" id="txtEmail" [(ngModel)]="email">
+    <input type="password" placeholder="Contraseña" id="txtContraseña" [(ngModel)]="clave"> 
+    <button (click)="Validar()">Validar</button>
+    <button (click)="Autocompletar()">Autocompletar</button>
+    @if(exito) {
+        <p>Bienvenido</p>
+    }@else if(exito==undefined) {
+        <p>Ingrese datos</p>
+    }@else {
+        <p>Contraseña incorrecta</p>
+    } 
+  </div>
+</div>
+

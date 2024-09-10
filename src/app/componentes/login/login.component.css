@@ -1,0 +1,100 @@
+:host {
+  display: block;
+  position: absolute; /* Cambiado a absolute para asegurar que ocupa toda la ventana */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita barras de desplazamiento */
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
+  background-size: cover; /* Cubre toda el área del contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen */
+  z-index: -1; /* Asegura que la imagen quede detrás del contenido */
+}
+
+.module.form-module {
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el formulario */
+  margin: 0 auto; /* Centra el módulo horizontalmente */
+  margin-top: 50px; /* Ajusta el margen superior si es necesario */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para el módulo */
+  z-index: 1; /* Asegura que el módulo esté por encima de la imagen de fondo */
+}
+
+.form h2 {
+  margin-top: 0;
+}
+
+.form input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #0056b3;
+}
+
+.toggle {
+  cursor: pointer;
+  font-size: 24px;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Opcional: estilos adicionales para el título, etc. */
+.pen-title {
+  padding: 50px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.pen-title h1 {
+  margin: 0 0 20px;
+  font-size: 48px;
+  font-weight: 300;
+}
+.pen-title span {
+  font-size: 12px;
+}
+.pen-title span .fa {
+  color: #33b5e5;
+}
+.pen-title span a {
+  color: #33b5e5;
+  font-weight: 600;
+  text-decoration: none;
+}

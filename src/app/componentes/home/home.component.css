@@ -1,0 +1,51 @@
+:host {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita barras de desplazamiento */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-weight: bold;
+}
+
+h1 {
+    color: white;
+    font-size: 45px;
+}
+
+ul li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: aqua;
+}
