@@ -1,0 +1,35 @@
+.quien-soy {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    .profile-image {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+  
+    h1 {
+      font-size: 2em;
+      color: #333;
+    }
+  
+    h2 {
+      font-size: 1.5em;
+      color: #555;
+      margin: 10px 0;
+    }
+  
+    p {
+      font-size: 1em;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+  

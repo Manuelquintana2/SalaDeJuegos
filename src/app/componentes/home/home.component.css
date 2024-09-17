@@ -35,6 +35,10 @@ h1 {
     color: white;
     font-size: 45px;
 }
+h3 {
+    color: white;
+    font-size: 15px;
+}
 
 ul li {
     display: inline-block;

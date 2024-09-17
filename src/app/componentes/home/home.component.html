@@ -4,9 +4,26 @@
             <h1>SALA DE JUEGOS</h1>
             <ul>
                 <li><a href="#">Juegos</a></li>
-                <li><button routerLink="quien-soy" routerLinkActive="active-route">Quien soy</button></li>
-    
+                <li><button (click)="mostrarQuienSoyFn()">Quien soy</button></li>
+                @if(logueado){
+                    <li><h3>{{email}}</h3></li>
+                    <li><button (click)="logout()">Cerrar sesión</button></li>
+                }
+                @else{
+                    <li><button (click)="mostrarLog()">Login</button></li>
+                    <li><button (click)="mostrarReg()">Registrarse</button></li>
+                }
             </ul>
         </nav>
     </header>
+    @if(mostrarLoguin){
+        <app-login (enviarDatos)="recibirDatos($event)"></app-login>
+    }
+
+    @if(mostrarRegister){
+        <app-register (enviarDatos)="recibirDatos($event)"></app-register>
+    }
+    @if(logueado && mostrarQuienSoy){
+        <app-quien-soy></app-quien-soy>
+    }
 </body>

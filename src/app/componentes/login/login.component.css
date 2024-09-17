@@ -35,7 +35,7 @@ html, body {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el formulario */
   margin: 0 auto; /* Centra el módulo horizontalmente */
-  margin-top: 50px; /* Ajusta el margen superior si es necesario */
+  margin-top: 210px; /* Ajusta el margen superior si es necesario */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para el módulo */
   z-index: 1; /* Asegura que el módulo esté por encima de la imagen de fondo */
@@ -98,3 +98,17 @@ html, body {
   font-weight: 600;
   text-decoration: none;
 }
+
+/* Estilo del div error-message */
+.error-message {
+  background-color: #f8d7da; /* Fondo rosa claro */
+  border: 1px solid #f5c6cb; /* Borde rosa claro */
+  color: #721c24; /* Texto oscuro */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 12px; /* Espaciado interno */
+  margin: 12px 0; /* Espaciado externo */
+  font-size: 14px; /* Tamaño de fuente */
+  text-align: center; /* Alineación del texto */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
