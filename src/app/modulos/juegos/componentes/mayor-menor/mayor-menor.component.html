@@ -1,1 +1,23 @@
-<p>mayor-menor works!</p>
+<body>
+  <nav class="navbar">
+    <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+  </nav>
+  <div class="juego">
+      <h1>Juego: Mayor o Menor</h1>
+      <div class="carta">
+        <img *ngIf="cartaActual" [src]="cartaActual.imagen" alt="Carta actual" />
+      </div>
+      <p>¿La siguiente carta es mayor o menor?</p>
+      <div class="carta">
+  
+      </div>
+      <div class="botones">
+        <button (click)="adivinar('mayor')">Mayor</button>
+        <button (click)="adivinar('menor')">Menor</button>
+      </div>
+      <p class="resultado">{{ resultado }}</p>
+      <button (click)="iniciarJuego()" *ngIf="resultado.includes('Fin del juego')">Reiniciar Juego</button>
+    </div>
+</body>
+  
+  

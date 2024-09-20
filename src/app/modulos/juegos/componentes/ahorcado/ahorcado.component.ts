@@ -7,12 +7,18 @@ import { Router } from '@angular/router';
   styleUrl: './ahorcado.component.css'
 })
 export class AhorcadoComponent {
-  palabras: string[] = ['angular', 'typescript', 'componente', 'servicio', 'directiva'];
+  palabras: string[] = [
+    'angular', 
+    'typescript', 
+    'componente', 
+    'servicio', 
+    'directiva'
+  ];
   palabraSeleccionada: string = '';
   letrasAdivinadas: string[] = [];
   intentosIncorrectos: number = 0;
   maxIntentosIncorrectos: number = 6;
-  alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  alfabeto: string[] = 'abcdefghijklmnñopqrstuvwxyz'.split('');
   imagenesArray : string[] = [
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/palo.jpg?alt=media&token=c587dd05-921e-4851-8294-a66e6f6592a1',
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/1.jpg?alt=media&token=efba3e64-dbec-49bd-90d9-de15b3e4bc55', 
