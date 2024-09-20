@@ -3,27 +3,53 @@
         <nav>
             <h1>SALA DE JUEGOS</h1>
             <ul>
-                <li><a href="#">Juegos</a></li>
                 <li><button (click)="mostrarQuienSoyFn()">Quien soy</button></li>
-                @if(logueado){
-                    <li><h3>{{email}}</h3></li>
+                @if(user != null){
                     <li><button (click)="logout()">Cerrar sesión</button></li>
-                }
+                    <li><button (click)="mostrarChatFn()">Chat</button></li>
+                    <li><h3>{{user.email}}</h3></li>
+                } 
                 @else{
-                    <li><button (click)="mostrarLog()">Login</button></li>
-                    <li><button (click)="mostrarReg()">Registrarse</button></li>
+                    <li><button (click)="irALogin()">Login</button></li>
+                    <li><button (click)="irARegister()">Registrarse</button></li>
                 }
             </ul>
         </nav>
     </header>
-    @if(mostrarLoguin){
-        <app-login (enviarDatos)="recibirDatos($event)"></app-login>
-    }
-
-    @if(mostrarRegister){
-        <app-register (enviarDatos)="recibirDatos($event)"></app-register>
-    }
-    @if(logueado && mostrarQuienSoy){
+    @if(mostrarQuienSoy){
         <app-quien-soy></app-quien-soy>
     }
+    @if(mostrarChat && user != null){
+        <app-chat></app-chat>
+    }
+    <div class="game-selection">
+        <h2>Selecciona un Juego</h2>
+        <div class="card-container">
+            <div class="game-card">
+                <img src="https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/hangman-game_3274156.png?alt=media&token=b423b970-2be8-4e70-80e4-70b3c7925e5e" alt="Juego 1" />
+                <h3>Ahorcado</h3>
+                <p>Descripción breve del juego 1.</p>
+                <button (click)="juegos('ahorcado')">Seleccionar</button>
+            </div>
+            <div class="game-card">
+                <img src="https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/09b87d8495c8cf32b64735c816312dfe_L.jpg?alt=media&token=eced8888-c868-4ce6-adf5-cc66d09e43b4" alt="Juego 2" />
+                <h3>Mayor o menor</h3>
+                <p>Descripción breve del juego 2.</p>
+                <button>Seleccionar</button>
+            </div>
+            <div class="game-card">
+                <img src="https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/23978.jpg?alt=media&token=cd3c77f7-ee36-46a7-8247-e2e7a7998af0" alt="Juego 3" />
+                <h3>Preguntados</h3>
+                <p>Descripción breve del juego 3.</p>
+                <button>Seleccionar</button>
+            </div>
+            <div class="game-card">
+                <img src="https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/23978.jpg?alt=media&token=cd3c77f7-ee36-46a7-8247-e2e7a7998af0" alt="Juego 4" />
+                <h3>Juego 4</h3>
+                <p>Descripción breve del juego 4.</p>
+                <button>Seleccionar</button>
+            </div>
+        </div>
+    </div>
 </body>
+

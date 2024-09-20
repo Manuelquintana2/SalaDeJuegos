@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FirebaseService } from '../../firebase.service';
+import { FirebaseService } from '../../servicios/firebase.service';
 import { Router } from '@angular/router';
 import {addDoc, collection, collectionData, where, orderBy, Firestore, limit, query, setDoc } from '@angular/fire/firestore';
 
@@ -17,21 +17,16 @@ export class RegisterComponent {
   password: string = '';
   error:string = '';
   exito:boolean = true;
-  datos: string = '';
 
   constructor(private firebaseService: FirebaseService, private firestore : Firestore, private router : Router) { }
-  
-  @Output() enviarDatos = new EventEmitter<string>();
 
   async register() {
     try{
-        await this.firebaseService.register(this.email, this.password).then(() => {
+          await this.firebaseService.register(this.email, this.password).then(() => {
           let col = collection(this.firestore, "logins");
           let obj = {fecha : new Date(), "user": this.email}
           addDoc(col, obj)
-          
-          this.datos = '{"email":"'+this.email+'","logueado":'+true+', "mostrarForm":'+false+'}';
-          this.enviarDatos.emit(this.datos)
+          this.router.navigate(['/home']);
       });
     }
     catch(e:any){

@@ -7,9 +7,9 @@
     <h2>Ingresa a tu cuenta</h2>
     <input type="text" placeholder="Email" id="txtEmail" [(ngModel)]="email">
     <input type="password" placeholder="Contraseña" id="txtContraseña" [(ngModel)]="password"> 
-    <button (click)="login()">Loguin</button>
+    <button (click)="login()">Login</button>
     <button (click)="AutoCompletar()">Autocompletar</button>
-    @if(exito!=true){
+    @if(exito != true){
       <div class="error-message">{{ error }}</div>
     }
   </div>

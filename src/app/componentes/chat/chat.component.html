@@ -1,0 +1,17 @@
+<div class="chat-card">
+    <div class="chat-header">
+        <h2>Chat</h2>
+    </div>
+    <div class="chat-messages" #messageContainer>
+        <div *ngFor="let mensaje of mensajes" class="msj p-2"
+        [ngClass]="(usuarioLogeado.uid==mensaje.idEmisor)?'enviado' : 'recibido'"
+        >
+            <strong>{{ mensaje.hora }}:</strong>
+            <strong>{{ mensaje.emisor }}:</strong> {{ mensaje.texto }}
+        </div>
+    </div>
+    <form class="chat-input-container" (ngSubmit)="enviarMensaje()">
+        <input type="text" [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}" placeholder="Escribe un mensaje..."/>
+        <button >Enviar</button>
+    </form>
+</div>

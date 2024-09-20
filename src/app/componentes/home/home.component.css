@@ -21,35 +21,142 @@ html, body {
     background-repeat: no-repeat; /* Evita la repetición de la imagen */
 }
 
+header {
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el encabezado */
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
 nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding-top: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-    font-weight: bold;
+    align-items: center;
 }
 
 h1 {
-    color: white;
-    font-size: 45px;
+    font-size: 3rem; /* Tamaño del texto aumentado */
+    color: #ffffff; /* Color dorado */
+    text-align: center; /* Centrado */
+    text-shadow: 
+        2px 2px 0 rgba(0, 0, 0, 0.5), /* Sombra para darle profundidad */
+        4px 4px 0 rgba(255, 165, 0, 0.7); /* Sombra adicional para un efecto brillante */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    animation: glow 1.5s infinite alternate; /* Animación de brillo */
 }
-h3 {
-    color: white;
-    font-size: 15px;
+
+/* Animación de brillo */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(240, 86, 9, 0.7),
+            0 0 20px rgba(255, 0, 0, 0.5),
+            0 0 30px rgba(227, 11, 11, 0.3);
+    }
+    100% {
+        text-shadow: 
+            0 0 20px rgb(255, 0, 0),
+            0 0 30px rgba(255, 0, 0, 0.7),
+            0 0 40px rgba(255, 0, 0, 0.5);
+    }
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
 ul li {
-    display: inline-block;
-    padding: 0px 20px;
+    position: relative;
 }
 
-a {
-    color: white;
+ul li a,
+ul li button {
+    background: linear-gradient(135deg, #ff4081, #ff6f20);
+    color: #ffffff;
     text-decoration: none;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-weight: bold;
 }
 
-a:hover {
-    color: aqua;
+ul li a:hover,
+ul li button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #ff6f20, #ff4081);
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ffffff; /* Color dorado */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.app-quien-soy {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.app-quien-soy:hover {
+    transform: scale(1.05);
+}
+
+.game-selection {
+    text-align: center;
+    margin: 20px 0;
+    color: #ffffff;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.game-card {
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card img {
+    width: 30%;
+    border-radius: 8px;
+}
+
+.game-card h3 {
+    margin: 10px 0;
+    color: #ffcc00;
+}
+
+.game-card p {
+    color: #f0f0f0;
+}
+
+.game-card button {
+    background: linear-gradient(135deg, #ff4081, #ff6f20);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.game-card button:hover {
+    background: linear-gradient(135deg, #ff6f20, #ff4081);
 }
