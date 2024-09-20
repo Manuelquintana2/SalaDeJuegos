@@ -40,18 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   juegos(juego:string) {
-    switch(juego) {
-      case 'ahorcado':
-        this.router.navigate(['juegos',juego]);
-        break;
-      case 'mayorMenor':
-        this.router.navigate(['/juegos/mayorMenor']);
-        break;
-      case 'preguntados':
-        this.router.navigate(['/juegos/preguntados']);
-        break;
-    }
-
+    this.router.navigate(['juegos',juego]); 
   }
   mostrarQuienSoyFn(){
     this.mostrarQuienSoy = !this.mostrarQuienSoy;

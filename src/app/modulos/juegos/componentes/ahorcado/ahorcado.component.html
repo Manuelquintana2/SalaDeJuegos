@@ -1,1 +1,35 @@
-<p>ahorcado works!</p>
+<body>
+  <nav class="navbar">
+    <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+  </nav>
+  <div class="ahorcado">
+    <h1>Juego del Ahorcado</h1>
+    <img src={{imagenActual}} alt="Juego del Ahorcado" id="imagen" class="imagen-juego" />
+    <p>Palabra: {{ mostrarPalabra }}</p>
+    <p>Intentos incorrectos: {{ intentosIncorrectos }} de {{ maxIntentosIncorrectos }}</p>
+  
+    <div *ngIf="estaJuegoTerminado()">
+      <p *ngIf="estaPalabraAdivinada()">¡Ganaste!</p>
+      <p *ngIf="!estaPalabraAdivinada()">Perdiste. La palabra era: {{ palabraSeleccionada }}</p>
+      <button (click)="iniciarNuevoJuego()">Reiniciar juego</button>
+    </div>
+  
+    <div *ngIf="!estaJuegoTerminado()" class="botones-letras">
+      <p>Selecciona una letra:</p>
+      <div>
+        <button *ngFor="let letra of alfabeto" 
+                (click)="adivinarLetra(letra)" 
+                [disabled]="letrasAdivinadas.includes(letra)" 
+                class="letra-boton">
+          {{ letra }}
+        </button>
+      </div>
+    </div>
+  
+    <div class="letras">
+      <p>Letras usadas: {{ letrasAdivinadas.join(', ') }}</p>
+    </div>
+  </div>
+  
+</body>
+  
