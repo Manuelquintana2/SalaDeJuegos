@@ -50,4 +50,7 @@ export class RegisterComponent {
       }
     }
   }
+  volverAlHome(){
+    this.router.navigate(['/home']);
+  }
 }

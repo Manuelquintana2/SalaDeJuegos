@@ -1,23 +1,32 @@
-<body>
-  <nav class="navbar">
-    <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
-  </nav>
+<nav class="navbar">
+  <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+</nav>
+
+<div class="container">
   <div class="juego">
-      <h1>Juego: Mayor o Menor</h1>
-      <div class="carta">
-        <img *ngIf="cartaActual" [src]="cartaActual.imagen" alt="Carta actual" />
-      </div>
-      <p>¿La siguiente carta es mayor o menor?</p>
-      <div class="carta">
-  
-      </div>
-      <div class="botones">
-        <button (click)="adivinar('mayor')">Mayor</button>
-        <button (click)="adivinar('menor')">Menor</button>
-      </div>
-      <p class="resultado">{{ resultado }}</p>
-      <button (click)="iniciarJuego()" *ngIf="resultado.includes('Fin del juego')">Reiniciar Juego</button>
+    <h1>Juego: Mayor o Menor</h1>
+    <div class="carta">
+      <img *ngIf="cartaActual" [src]="cartaActual.imagen" alt="Carta actual" class="hero-image" />
     </div>
-</body>
-  
-  
+    <p>¿La siguiente carta es mayor o menor?</p>
+    <div class="carta">
+      <!-- Aquí puedes agregar la imagen de la siguiente carta si lo deseas -->
+    </div>
+    <div class="botones">
+      <button (click)="adivinar('mayor')" class="button">Mayor</button>
+      <button (click)="adivinar('menor')" class="button">Menor</button>
+    </div>
+    <div class="letras">
+      <p>Cartas restantes: {{ cartasRestantes }}</p>
+    </div>
+    <div class="puntos">
+      <p>Puntaje: {{ puntos }}</p>
+    </div>
+    <p class="resultado">{{ resultado }}</p>
+    <button (click)="iniciarJuego()" *ngIf="resultado.includes('Fin del juego')" class="button">Reiniciar Juego</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 Tu Juego: Mayor o Menor</p>
+</footer>

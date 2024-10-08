@@ -14,6 +14,7 @@ export class AhorcadoComponent {
     'servicio', 
     'directiva'
   ];
+  puntaje: number = 0;
   palabraSeleccionada: string = '';
   letrasAdivinadas: string[] = [];
   intentosIncorrectos: number = 0;
@@ -40,6 +41,7 @@ imagenActual!:string;
     this.letrasAdivinadas = [];
     this.intentosIncorrectos = 0;
     this.imagenActual = this.imagenesArray[0];
+    this.puntaje = 0;
   }
 
   obtenerPalabraAleatoria(): string {
@@ -52,6 +54,12 @@ imagenActual!:string;
       if (!this.palabraSeleccionada.includes(letra)) {
         this.intentosIncorrectos++;
         this.imagenActual = this.imagenesArray[this.intentosIncorrectos];
+        if(this.puntaje > 0){
+          this.puntaje -= 1;
+        }
+      }
+      else{
+        this.puntaje += 1;
       }
     }
   }

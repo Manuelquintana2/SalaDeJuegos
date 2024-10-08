@@ -4,14 +4,19 @@
     </div>
     <div class="chat-messages" #messageContainer>
         <div *ngFor="let mensaje of mensajes" class="msj p-2"
-        [ngClass]="(usuarioLogeado.uid==mensaje.idEmisor)?'enviado' : 'recibido'"
-        >
-            <strong>{{ mensaje.hora }}:</strong>
-            <strong>{{ mensaje.emisor }}:</strong> {{ mensaje.texto }}
+            [ngClass]="(usuarioLogeado.uid == mensaje.idEmisor) ? 'enviado' : 'recibido'">
+            <strong>{{ mensaje.hora }} </strong>
+            @if(usuarioLogeado.uid == mensaje.idEmisor){
+                <div> Tu: {{ mensaje.texto }}</div>
+            }
+            @else {
+                <div>{{ mensaje.emisor }}: {{ mensaje.texto }}</div>
+            }
         </div>
     </div>
     <form class="chat-input-container" (ngSubmit)="enviarMensaje()">
-        <input type="text" [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}" placeholder="Escribe un mensaje..."/>
-        <button >Enviar</button>
+        <input type="text" [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}" placeholder="Escribe un mensaje..." class="chat-input"/>
+        <button type="submit" class="button">Enviar</button>
     </form>
 </div>
+

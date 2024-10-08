@@ -41,6 +41,9 @@ export class LoginComponent implements AfterViewInit {
       case 'auth/invalid-email':
         this.error = 'La dirección de correo electrónico es inválida.';
         break;
+      case 'auth/invalid-credential':
+        this.error = 'Contraseña o mail incorrectos.';
+        break;
       case 'auth/user-disabled':
         this.error ='La cuenta de usuario ha sido deshabilitada.';
         break;
@@ -54,6 +57,7 @@ export class LoginComponent implements AfterViewInit {
         this.error ='Error desconocido.';
         break;
     }
+    console.log(e.code);
   }
   }
   
@@ -62,4 +66,7 @@ export class LoginComponent implements AfterViewInit {
     this.password = "hola123";
   }
 
+  volverAlHome(){
+    this.router.navigate(['/home']);
+  }
 }

@@ -14,6 +14,7 @@ interface Carta {
 })
 export class MayorMenorComponent {
   mazo: Carta[] = [];
+  cartasRestantes:number | null = null;
   cartaActual: Carta | null = null;
   siguienteCarta: Carta | null = null;
   resultado: string = '';
@@ -43,6 +44,7 @@ export class MayorMenorComponent {
     this.siguienteCarta = this.mazo.pop() || null;
     this.resultado = '';
     this.puntos = 0;
+    this.cartasRestantes = this.mazo.length+1;
   }
 
   generarMazo(): Carta[] {
@@ -75,9 +77,11 @@ export class MayorMenorComponent {
 
     if (this.mazo.length > 0) {
       this.siguienteCarta = this.mazo.pop() || null;
+      this.cartasRestantes = this.mazo.length+1;
     } else {
       this.resultado += ` Fin del juego. Puntos: ${this.puntos}`;
       this.siguienteCarta = null; // Termina el juego
+      this.cartasRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
     }
   }
 
