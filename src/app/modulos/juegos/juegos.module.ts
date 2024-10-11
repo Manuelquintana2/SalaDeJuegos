@@ -5,10 +5,11 @@ import { JuegosRoutingModule } from './juegos-routing.module';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './componentes/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
+import { TetrisComponent } from './componentes/tetris/tetris.component';
 
 @NgModule({
-  declarations: [AhorcadoComponent,MayorMenorComponent,PreguntadosComponent],
-  exports: [AhorcadoComponent, MayorMenorComponent, PreguntadosComponent],
+  declarations: [AhorcadoComponent,MayorMenorComponent,PreguntadosComponent, TetrisComponent],
+  exports: [AhorcadoComponent, MayorMenorComponent, PreguntadosComponent, TetrisComponent],
   imports: [
     CommonModule,
     JuegosRoutingModule

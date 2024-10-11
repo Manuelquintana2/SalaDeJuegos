@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+</nav>
+<div class="container">
+  <section>
+    <canvas #canvas></canvas>
+    @if(gameOver == false){
+      <span>Puntos: {{score}}</span>
+    }
+  </section>
+  @if(gameOver == true){
+    <h2>Perdiste! Puntos: {{score}}</h2>
+    <button class="navbar-button" (click)="reiniciar()">Reiniciar juego</button>
+  }
+</div>
+  

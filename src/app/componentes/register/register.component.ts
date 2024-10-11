@@ -35,8 +35,11 @@ export class RegisterComponent {
         case 'auth/email-already-in-use':
        this.error = 'La dirección de correo electrónico ya está en uso.';
        break;
+       case 'auth/invalid-email':
+       this.error = 'Email invalido';
+       break;
       case 'auth/weak-password':
-       this.error = 'La contraseña es demasiado débil.';
+       this.error = 'la contraseña debe tener 6 caracteres';
        break;
       case 'auth/operation-not-allowed':
         this.error = 'Esta operación no está permitida.';
@@ -45,9 +48,10 @@ export class RegisterComponent {
         this.error = 'Debes iniciar sesión recientemente para realizar esta operación.';
         break;
       default:
-        this.error = 'error desconocido.';
+        this.error = 'Email o contraseña invalido';
         break;
       }
+      console.log(e.code);
     }
   }
   volverAlHome(){
