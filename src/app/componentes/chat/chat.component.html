@@ -5,7 +5,7 @@
     <div class="chat-messages" #messageContainer>
         <div *ngFor="let mensaje of mensajes" class="msj p-2"
             [ngClass]="(usuarioLogeado.uid == mensaje.idEmisor) ? 'enviado' : 'recibido'">
-            <strong>{{ mensaje.hora }} </strong>
+            <strong>{{ mensaje.fecha }} </strong>
             @if(usuarioLogeado.uid == mensaje.idEmisor){
                 <div> Tu: {{ mensaje.texto }}</div>
             }

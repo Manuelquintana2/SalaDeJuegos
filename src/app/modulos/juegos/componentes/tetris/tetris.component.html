@@ -4,12 +4,12 @@
 <div class="container">
   <section>
     <canvas #canvas></canvas>
-    @if(gameOver == false){
-      <span>Puntos: {{score}}</span>
+    @if(juegoTerminado == false){
+      <span>Puntos: {{puntaje}}</span>
     }
   </section>
-  @if(gameOver == true){
-    <h2>Perdiste! Puntos: {{score}}</h2>
+  @if(juegoTerminado == true){
+    <h2>Perdiste! Puntos: {{puntaje}}</h2>
     <button class="navbar-button" (click)="reiniciar()">Reiniciar juego</button>
   }
 </div>

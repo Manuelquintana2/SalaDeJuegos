@@ -118,7 +118,7 @@ footer p {
   background: linear-gradient(135deg, #ff6f20, #ff4081);
 }
 
-.letra-boton {
+.letra-boton:enabled{
   background: linear-gradient(135deg, #ff4081, #ff6f20);
   color: white;
   padding: 15px;
@@ -129,7 +129,18 @@ footer p {
   transition: background 0.3s, transform 0.2s;
 }
 
-.letra-boton:hover {
+.letra-boton:hover:enabled {
   transform: scale(1.05);
   background: linear-gradient(135deg, #ff6f20, #ff4081);
+}
+
+.letra-boton:disabled {
+  color: white;
+  padding: 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ccc; /* Color de fondo cuando está deshabilitado */
+  color: #666; /* Color del texto cuando está deshabilitado */
+  cursor: not-allowed; /* Cambiar el cursor */
 }

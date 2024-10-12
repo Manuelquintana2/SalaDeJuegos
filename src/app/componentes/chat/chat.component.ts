@@ -31,11 +31,11 @@ export class ChatComponent implements OnInit, OnDestroy  {
 
     this.sub = collectionData(filtererQuery).subscribe((respuesta: any) => {
       // Asignar directamente a mensajes en lugar de usar push
-      this.mensajes = respuesta.map((item: { usuario: any; id: any; mensaje: any; hora: any; timestamp : any }) => ({
+      this.mensajes = respuesta.map((item: { usuario: any; id: any; mensaje: any; fecha: any; timestamp : any }) => ({
         emisor: item.usuario,
         idEmisor: item.id,  // para identificar al emisor en el mensaje
         texto: item.mensaje,
-        hora: item.hora,
+        fecha: item.fecha,
         timestamp: item.timestamp 
       }));
       this.scrollToBottom();
@@ -43,16 +43,39 @@ export class ChatComponent implements OnInit, OnDestroy  {
     };
   
   enviarMensaje(){
-    console.log(this.nuevoMensaje);
     let fecha = new Date();
+    let dia = String(fecha.getDay());
+    switch(dia){
+      case "0":
+        dia = "Domingo";
+        break;
+      case "1":
+        dia = "Lunes";
+        break;
+      case "2":
+        dia = "Martes";
+        break;
+      case "3":
+        dia = "Miércoles";
+        break;
+      case "4":
+        dia = "Jueves";
+        break;
+      case "5":
+        dia = "Viernes";
+        break;
+      case "6":
+        dia = "Sábado";
+        break;
+    }
     let hora = fecha.getHours();
     let minutos = fecha.getMinutes();
-    let tiempo = `${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
+    let tiempo = `${dia}, ${fecha.toLocaleDateString()} ${String(hora).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
 
     let col = collection(this.fireStore,'chat');
     let obj = {  id: this.usuarioLogeado.uid,
        usuario: this.usuarioLogeado.email, 
-       hora: tiempo, 
+       fecha: tiempo, 
        mensaje: this.nuevoMensaje,
        timestamp: new Date().getTime()};
     setTimeout(() => {
