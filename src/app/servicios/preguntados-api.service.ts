@@ -53,4 +53,13 @@ export class PreguntadosApiService {
         }));
       }));
   }
+  getRickAndMortyPJ(){
+    return this.http.get<any>("https://rickandmortyapi.com/api/character")
+     .pipe(map(response => {
+        return response.results.map((personaje: { name: any; image: any; }) => ({
+          nombre: personaje.name,
+          imagen: personaje.image
+        }));
+      }));
+  }
 }

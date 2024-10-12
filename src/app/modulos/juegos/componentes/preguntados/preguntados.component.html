@@ -1,9 +1,9 @@
 <div class="container">
     <h1>Juego de Preguntados</h1>
   
-    <div *ngIf="heroeActual">
-      <h2>Quien es este heroe?</h2>
-      <img [src]="heroeActual.imagen" alt="Hero Image" class="hero-image" />
+    <div *ngIf="personajeActual">
+      <h2>Quien es este personaje?</h2>
+      <img [src]="personajeActual.imagen" alt="Hero Image" class="hero-image" />
     </div>
   
     <div *ngIf="opciones && opciones.length > 1">
@@ -14,13 +14,15 @@
         </li>
       </ul>
     </div>
-  
-    <div *ngIf="resultado">
-      <h3>{{ resultado }}</h3>
-    </div>
       <button (click)="volverAlHome()">Volver al Inicio</button>
-    <footer>
-      <p>Héroes restantes: {{ heroesRestantes }}</p>
+      <footer>
+        @if(siguientePersonaje == null){
+          <p>Personajes restantes: No quedan mas personajes</p>
+          <button (click)="iniciarJuego()">Reiniciar juego</button>
+      }
+      @else{
+        <p>Personajes restantes: {{ personajesRestantes }}</p>
+      }
       <p>Puntos: {{ puntos }}</p>
     </footer>
   </div>

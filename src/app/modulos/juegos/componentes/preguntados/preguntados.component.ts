@@ -4,6 +4,10 @@ import { Subscription, timeout } from 'rxjs';
 import { Router } from '@angular/router';
 
 
+interface Personaje {
+  nombre: string;
+}
+
 @Component({
   selector: 'app-preguntados',
   standalone: false,
@@ -12,12 +16,13 @@ import { Router } from '@angular/router';
 })
 export class PreguntadosComponent implements OnInit, OnDestroy {
 
-  heroes: any[] = [];
   suscripcion! : Subscription;
-  heroeActual: any;
-  siguienteHeroe: any;
+  personajes: any[] = [];
+  listaDeUsados: any[] = [];
+  personajeActual: any;
+  siguientePersonaje: any;
   opciones!: string[];
-  heroesRestantes! : number;
+  personajesRestantes! : number;
   resultado! : string;
   puntos: number = 0;
 
@@ -25,25 +30,23 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.suscripcion = this.preguntadosService.getHeroes().subscribe(data => {
-    this.heroes = data;
-    this.iniciarJuego();  
-    console.log(this.heroes);
-    });;
+    this.suscripcion = this.preguntadosService.getRickAndMortyPJ().subscribe(data => {
+      this.personajes = data;
+      this.iniciarJuego();
+    });
   }
 
   iniciarJuego(){
-    if (this.heroes.length === 0) {
-      console.error('No hay héroes disponibles.');
-      return;
+
+    if (this.personajes.length === 0) {
+      this.personajes = this.listaDeUsados;
     }
-    this.heroes = this.mezclar(this.heroes);
-    this.heroeActual = this.heroes.pop() || null;
-    console.log(this.heroeActual);
-    this.siguienteHeroe = this.heroes.pop() || null;
+    this.personajes = this.mezclar(this.personajes);
+    this.personajeActual = this.personajes.pop() || null;
+    this.listaDeUsados.push(this.personajeActual);
+    this.siguientePersonaje = this.personajes.pop() || null;
     this.opciones = this.obtenerOpcionesAleatorias(4);
-    console.log('Opciones:', this.opciones);
-    this.heroesRestantes = this.heroes.length+1;
+    this.personajesRestantes = this.personajes.length+1;
   }
 
   mezclar(array: any[]): any[] {
@@ -55,30 +58,35 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcionesAleatorias(cantidad: number): string[] {
+    console.log(this.personajeActual);
     let opcionesAleatorias: string[] = [];
-    
+    let listaOpcionesAleatorias: Personaje[] = [];
+    listaOpcionesAleatorias = this.personajes.concat(this.listaDeUsados);
+    console.log(listaOpcionesAleatorias);
     // Asegúrate de que la cantidad no supere el número de héroes disponibles
-    const cantidadReal = Math.min(cantidad, this.heroes.length);
-    
-    while (opcionesAleatorias.length < cantidadReal) {
-      const randomIndex = Math.floor(Math.random() * this.heroes.length);
-      const heroe = this.heroes[randomIndex];
-       // Agrega el héroe solo si no está ya en las opciones
-       if (!opcionesAleatorias.includes(heroe.nombre)) {
-        opcionesAleatorias.push(heroe.nombre);
+    const cantidadReal = Math.min(cantidad, listaOpcionesAleatorias.length);
+    if(this.personajes != null){
+      while (opcionesAleatorias.length < cantidadReal) {
+        const randomIndex = Math.floor(Math.random() * listaOpcionesAleatorias.length);
+        const personaje = listaOpcionesAleatorias[randomIndex];
+         // Agrega el héroe solo si no está ya en las opciones
+         if (!opcionesAleatorias.includes(personaje.nombre)) {
+          opcionesAleatorias.push(personaje.nombre);
+        }
       }
+      if(!opcionesAleatorias.includes(this.personajeActual)){
+        opcionesAleatorias.push(this.personajeActual.nombre);
+      }
+      opcionesAleatorias = this.mezclar(opcionesAleatorias)
+  
+      return opcionesAleatorias;
     }
-    if(!opcionesAleatorias.includes(this.heroeActual)){
-      opcionesAleatorias.push(this.heroeActual.nombre);
-    }
-    opcionesAleatorias = this.mezclar(opcionesAleatorias)
-
-    return opcionesAleatorias;
+    return [];
   }
 
   seleccionarOpcion(opcion: string) {
     console.log('Opción seleccionada:', opcion);
-    if (opcion === this.heroeActual.nombre) {
+    if (opcion === this.personajeActual.nombre) {
       console.log('Correcto!');
       this.puntos++;
     }
@@ -88,18 +96,18 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
         this.puntos--;
       }
     }
-    this.heroeActual = this.siguienteHeroe;
-    console.log(this.heroeActual);
+    this.personajeActual = this.siguientePersonaje;
+    this.listaDeUsados.push(this.personajeActual);
     this.opciones = this.obtenerOpcionesAleatorias(4);
-    console.log(this.opciones);
+    console.log(this.personajes.length)
+    console.log(this.personajes);
 
-    if (this.heroes.length > 0) {
-      this.siguienteHeroe = this.heroes.pop() || null;
-      this.heroesRestantes = this.heroes.length+1;
+    if (this.personajes.length > 0) {
+      this.siguientePersonaje = this.personajes.pop() || null;
+      this.personajesRestantes = this.personajes.length+1;
     } else {
-      this.resultado = `Fin del juego`;
-      this.siguienteHeroe = null; // Termina el juego
-      this.heroesRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
+      this.siguientePersonaje = null; // Termina el juego
+      this.personajesRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
     }
   }
   ngOnDestroy(): void {
