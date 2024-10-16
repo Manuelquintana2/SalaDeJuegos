@@ -1,6 +1,48 @@
-<div class="quien-soy">
+<body>
+  <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+  <div class="app-quien-soy">
+    <img [src]="imagen" alt="{{ nombre }}" class="perfil-imagen">
     <h1>{{ titulo }}</h1>
-    <img [src]="imageUrl" alt="{{ nombre }}" class="profile-image" />
-    <h2>{{ nombre }}</h2>
-    <p>{{ descripcionJuego }}</p>
+    <h2> Nombre: {{ nombre }}</h2>
+    <h2> Dni: {{ dni }}</h2>
+    <h2> Legajo: {{ legajo }}</h2>
+    <p class="descripcion">{{ descripcion }}</p>
+  
+    <div class="seccion">
+      <h1>Lenguajes de Programación</h1>
+      <ul class="lista">
+        <li *ngFor="let lenguaje of lenguajes" class="lista-item">
+          <img [src]="lenguaje.imagen" alt="{{ lenguaje.nombre }}" class="lenguaje-imagen">
+          <span>{{ lenguaje.nombre }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="seccion">
+      <h1>Entornos</h1>
+      <ul class="lista">
+        <li *ngFor="let entorno of entornos" class="lista-item">
+          <img [src]="entorno.imagen" alt="{{ entorno.nombre }}" class="entorno-imagen">
+          <span>{{ entorno.nombre }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="seccion">
+      <h1>Frameworks</h1>
+      <ul class="lista">
+        <li *ngFor="let framework of frameworks" class="lista-item">
+          <img [src]="framework.imagen" alt="{{ framework.nombre }}" class="framework-imagen">
+          <span>{{ framework.nombre }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <h1>Contacto</h1>
+    <p>Email: <a href="mailito:{{ contacto }}">{{ contacto }}</a></p>
+  
+    <h1>Descripción del juego propio</h1>
+    <p class="descripcion-juego">{{ descripcionJuego }}</p>
+    <img class="imagen-tetris" src="https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/tetris.png?alt=media&token=2c0e42d7-b493-4217-930e-d28ebfb9e58a" alt="Juego 4" />
   </div>
+</body>

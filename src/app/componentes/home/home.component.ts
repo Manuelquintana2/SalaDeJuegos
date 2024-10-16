@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['juegos',juego]); 
   }
   mostrarQuienSoyFn(){
-    this.mostrarQuienSoy = !this.mostrarQuienSoy;
+    this.router.navigate(['/quien-soy']); 
   }
 
   mostrarChatFn(){

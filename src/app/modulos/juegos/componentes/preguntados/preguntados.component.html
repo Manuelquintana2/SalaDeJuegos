@@ -6,20 +6,24 @@
       <img [src]="personajeActual.imagen" alt="Hero Image" class="hero-image" />
     </div>
   
-    <div *ngIf="opciones && opciones.length > 1">
-      <h3>Opciones:</h3>
-      <ul>
-        <li *ngFor="let opcion of opciones" (click)="seleccionarOpcion(opcion)">
-          {{ opcion }}
-        </li>
-      </ul>
+    <div>
+      @if(personajeActual != null){
+        <h3>Opciones:</h3>
+        <ul>
+          <li *ngFor="let opcion of opciones" (click)="seleccionarOpcion(opcion)">
+            {{ opcion }}
+          </li>
+        </ul>
+      }
+      @else{
+        <button (click)="reiniciarjuego()">Reiniciar juego</button>
+      }
     </div>
       <button (click)="volverAlHome()">Volver al Inicio</button>
       <footer>
-        @if(siguientePersonaje == null){
-          <p>Personajes restantes: No quedan mas personajes</p>
-          <button (click)="iniciarJuego()">Reiniciar juego</button>
-      }
+        @if(personajeActual == null){
+          <p>Personajes restantes: No quedan mas personajes</p> 
+        }
       @else{
         <p>Personajes restantes: {{ personajesRestantes }}</p>
       }

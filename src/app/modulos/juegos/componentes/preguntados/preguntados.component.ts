@@ -37,10 +37,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   iniciarJuego(){
-
-    if (this.personajes.length === 0) {
-      this.personajes = this.listaDeUsados;
-    }
     this.personajes = this.mezclar(this.personajes);
     this.personajeActual = this.personajes.pop() || null;
     this.listaDeUsados.push(this.personajeActual);
@@ -62,7 +58,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     let opcionesAleatorias: string[] = [];
     let listaOpcionesAleatorias: Personaje[] = [];
     listaOpcionesAleatorias = this.personajes.concat(this.listaDeUsados);
-    console.log(listaOpcionesAleatorias);
     // Asegúrate de que la cantidad no supere el número de héroes disponibles
     const cantidadReal = Math.min(cantidad, listaOpcionesAleatorias.length);
     if(this.personajes != null){
@@ -85,21 +80,20 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   seleccionarOpcion(opcion: string) {
-    console.log('Opción seleccionada:', opcion);
     if (opcion === this.personajeActual.nombre) {
       console.log('Correcto!');
       this.puntos++;
     }
     else{
       console.log('Incorrecto!');
-      if(this.puntos>0){
+      if(this.puntos > 0){
         this.puntos--;
       }
     }
+    
     this.personajeActual = this.siguientePersonaje;
     this.listaDeUsados.push(this.personajeActual);
     this.opciones = this.obtenerOpcionesAleatorias(4);
-    console.log(this.personajes.length)
     console.log(this.personajes);
 
     if (this.personajes.length > 0) {
@@ -109,6 +103,11 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       this.siguientePersonaje = null; // Termina el juego
       this.personajesRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
     }
+  }
+
+  reiniciarjuego(){
+    this.puntos = 0;
+    this.ngOnInit();
   }
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();

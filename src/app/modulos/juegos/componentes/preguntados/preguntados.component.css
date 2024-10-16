@@ -79,6 +79,7 @@ footer p {
 button {
     background: linear-gradient(135deg, #ff4081, #ff6f20);
     color: white;
+    margin: 5px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

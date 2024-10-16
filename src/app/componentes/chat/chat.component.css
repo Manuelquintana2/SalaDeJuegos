@@ -3,7 +3,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     color: white;
-    max-width: 400px; /* Ajusta según necesites */
+    max-width: 400px; 
     margin: 20px auto;
     padding: 15px;
 }
@@ -13,15 +13,15 @@
 }
 
 .chat-messages {
-    max-height: 300px; /* Ajusta según necesites */
+    max-height: 300px; 
     overflow-y: auto; /* Permite el desplazamiento */
     margin-bottom: 10px;
     padding-right: 10px; /* Espacio para el desplazamiento */
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .chat-messages::-webkit-scrollbar {
-    display: none; /* Chrome, Safari y Opera */
+    display: none; 
 }
 
 .msj {
