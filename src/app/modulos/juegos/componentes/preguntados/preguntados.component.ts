@@ -18,6 +18,7 @@ interface Personaje {
 export class PreguntadosComponent implements OnInit, OnDestroy {
 
   suscripcion! : Subscription;
+  sub! : Subscription;
   personajes: any[] = [];
   listaDeUsados: any[] = [];
   personajeActual: any;
@@ -33,7 +34,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.suscripcion = this.preguntadosService.getRickAndMortyPJ().subscribe(data => {
+    this.sub = this.preguntadosService.getRickAndMortyPJ().subscribe(data => {
       this.personajes = data;
       this.iniciarJuego();
     });
@@ -42,7 +43,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   listarPuntajes(){
     this.listar = !this.listar;
     this.suscripcion = this.puntuacion.obtenerPuntajes("Preguntados").subscribe((respuesta: any) => {
-      // Asignar directamente a mensajes en lugar de usar push
       this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
         usuario: item.usuario,
         fecha: item.fecha,
@@ -80,7 +80,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     let opcionesAleatorias: string[] = [];
     let listaOpcionesAleatorias: Personaje[] = [];
     listaOpcionesAleatorias = this.personajes.concat(this.listaDeUsados);
-    // Asegúrate de que la cantidad no supere el número de héroes disponibles
     const cantidadReal = Math.min(cantidad, listaOpcionesAleatorias.length);
     if(this.personajes != null){
       while (opcionesAleatorias.length < cantidadReal) {
@@ -133,7 +132,10 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.ngOnInit();
   }
   ngOnDestroy(): void {
-    this.suscripcion.unsubscribe();
+    this.sub.unsubscribe();
+    if(this.suscripcion != null){
+      this.suscripcion.unsubscribe();
+    }
   }
   volverAlHome(){
     this.router.navigate(['/home']);

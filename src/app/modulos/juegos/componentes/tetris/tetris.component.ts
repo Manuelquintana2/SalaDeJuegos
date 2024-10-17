@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './tetris.component.html',
   styleUrl: './tetris.component.css'
 })
-export class TetrisComponent implements OnInit{
+export class TetrisComponent implements OnInit, OnDestroy{
   @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
   private contexto!: CanvasRenderingContext2D;
@@ -49,6 +49,15 @@ export class TetrisComponent implements OnInit{
     this.juegoTerminado = false;
   }
   ngOnInit() {
+    this.suscripcion = this.puntuacion.obtenerPuntajes("Tetris").subscribe((respuesta: any) => {
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
+    });
     this.establecerValores();
   }
 
@@ -63,16 +72,6 @@ export class TetrisComponent implements OnInit{
   }
   listarPuntajes(){
     this.listar = !this.listar;
-    this.suscripcion = this.puntuacion.obtenerPuntajes("Tetris").subscribe((respuesta: any) => {
-      // Asignar directamente a mensajes en lugar de usar push
-      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
-        usuario: item.usuario,
-        fecha: item.fecha,
-        puntaje: item.puntaje,
-        juego: item.juego,
-        timestamp: item.timestamp 
-      }));
-    });
   }
   private crearTablero(ancho: number, alto: number): number[][] {
     return Array(alto).fill(0).map(() => Array(ancho).fill(0));
@@ -224,6 +223,10 @@ export class TetrisComponent implements OnInit{
   }
   volverAlHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 }
 

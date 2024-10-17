@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PuntajeService } from '../../../../servicios/puntaje.service';
 import { Subscription } from 'rxjs';
@@ -8,8 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.css'
 })
-export class AhorcadoComponent {
-  sub!: Subscription;
+export class AhorcadoComponent implements OnDestroy, OnInit {
   palabras: string[] = [
     'angular', 
     'typescript', 
@@ -42,6 +41,18 @@ export class AhorcadoComponent {
     this.iniciarNuevoJuego();
   }
 
+  ngOnInit(): void {
+    this.suscripcion = this.puntuacion.obtenerPuntajes("Ahorcado").subscribe((respuesta: any) => {
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
+    });
+  }
+
   iniciarNuevoJuego() {
     this.palabraSeleccionada = this.obtenerPalabraAleatoria();
     this.letrasAdivinadas = [];
@@ -52,16 +63,6 @@ export class AhorcadoComponent {
 
   listarPuntajes(){
     this.listar = !this.listar;
-    this.suscripcion = this.puntuacion.obtenerPuntajes("Ahorcado").subscribe((respuesta: any) => {
-      // Asignar directamente a mensajes en lugar de usar push
-      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
-        usuario: item.usuario,
-        fecha: item.fecha,
-        puntaje: item.puntaje,
-        juego: item.juego,
-        timestamp: item.timestamp 
-      }));
-    });
   }
   obtenerPalabraAleatoria(): string {
     return this.palabras[Math.floor(Math.random() * this.palabras.length)];
@@ -100,5 +101,9 @@ export class AhorcadoComponent {
 
   volverAlHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 }

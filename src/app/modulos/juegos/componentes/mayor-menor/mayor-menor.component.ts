@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PuntajeService } from '../../../../servicios/puntaje.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ interface Carta {
   templateUrl: './mayor-menor.component.html',
   styleUrl: './mayor-menor.component.css'
 })
-export class MayorMenorComponent {
+export class MayorMenorComponent implements OnDestroy, OnInit {
   mazo: Carta[] = [];
   cartasRestantes:number | null = null;
   cartaActual: Carta | null = null;
@@ -43,6 +43,18 @@ export class MayorMenorComponent {
     this.iniciarJuego();
   }
 
+  ngOnInit(): void {
+    this.suscripcion = this.puntuacion.obtenerPuntajes("MayorMenor").subscribe((respuesta: any) => {
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
+    });
+  }
+
   iniciarJuego() {
     this.mazo = this.generarMazo();
     this.cartaActual = this.mazo.pop() || null;
@@ -54,16 +66,6 @@ export class MayorMenorComponent {
 
   listarPuntajes(){
     this.listar = !this.listar;
-    this.suscripcion = this.puntuacion.obtenerPuntajes("MayorMenor").subscribe((respuesta: any) => {
-      // Asignar directamente a mensajes en lugar de usar push
-      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
-        usuario: item.usuario,
-        fecha: item.fecha,
-        puntaje: item.puntaje,
-        juego: item.juego,
-        timestamp: item.timestamp 
-      }));
-    });
   }
   generarMazo(): Carta[] {
     const mazo: Carta[] = [];
@@ -103,8 +105,11 @@ export class MayorMenorComponent {
       this.puntuacion.guardarPuntaje(this.puntos,"MayorMenor");
     }
   }
-
   volverAlHome(){
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 }
