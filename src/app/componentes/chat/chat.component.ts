@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit, OnDestroy  {
     ngOnInit(): void {
       this.usuarioLogeado = this.fireBaseService.getCurrentUser();
       const col = collection(this.fireStore, 'chat');
-    const filtererQuery = query(col, orderBy('timestamp', 'asc'));
+      const filtererQuery = query(col, orderBy('timestamp', 'asc'));
 
     this.sub = collectionData(filtererQuery).subscribe((respuesta: any) => {
       // Asignar directamente a mensajes en lugar de usar push

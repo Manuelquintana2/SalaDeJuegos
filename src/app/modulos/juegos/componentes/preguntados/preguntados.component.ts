@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PreguntadosApiService } from '../../../../servicios/preguntados-api.service';
 import { Subscription, timeout } from 'rxjs';
 import { Router } from '@angular/router';
+import { PuntajeService } from '../../../../servicios/puntaje.service';
 
 
 interface Personaje {
@@ -25,14 +26,28 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   personajesRestantes! : number;
   resultado! : string;
   puntos: number = 0;
+  puntajes: any[] = [];
 
-  constructor(private preguntadosService: PreguntadosApiService, private router: Router) {
+  constructor(private preguntadosService: PreguntadosApiService, private router: Router, private puntuacion : PuntajeService) {
   }
 
   ngOnInit(): void {
     this.suscripcion = this.preguntadosService.getRickAndMortyPJ().subscribe(data => {
       this.personajes = data;
       this.iniciarJuego();
+    });
+  }
+
+  listarPuntajes(){
+    this.suscripcion = this.puntuacion.obtenerPuntajes("Preguntados").subscribe((respuesta: any) => {
+      // Asignar directamente a mensajes en lugar de usar push
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
     });
   }
 
@@ -54,6 +69,11 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   obtenerOpcionesAleatorias(cantidad: number): string[] {
+    if(this.personajeActual == null){
+      this.puntuacion.guardarPuntaje(this.puntos,"Preguntados");
+      return [];
+    }
+
     console.log(this.personajeActual);
     let opcionesAleatorias: string[] = [];
     let listaOpcionesAleatorias: Personaje[] = [];
@@ -64,8 +84,8 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       while (opcionesAleatorias.length < cantidadReal) {
         const randomIndex = Math.floor(Math.random() * listaOpcionesAleatorias.length);
         const personaje = listaOpcionesAleatorias[randomIndex];
-         // Agrega el héroe solo si no está ya en las opciones
-         if (!opcionesAleatorias.includes(personaje.nombre)) {
+          // Agrega el héroe solo si no está ya en las opciones
+          if (!opcionesAleatorias.includes(personaje.nombre)) {
           opcionesAleatorias.push(personaje.nombre);
         }
       }
@@ -77,6 +97,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       return opcionesAleatorias;
     }
     return [];
+    
   }
 
   seleccionarOpcion(opcion: string) {
@@ -99,7 +120,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     if (this.personajes.length > 0) {
       this.siguientePersonaje = this.personajes.pop() || null;
       this.personajesRestantes = this.personajes.length+1;
-    } else {
+    }else {
       this.siguientePersonaje = null; // Termina el juego
       this.personajesRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
     }

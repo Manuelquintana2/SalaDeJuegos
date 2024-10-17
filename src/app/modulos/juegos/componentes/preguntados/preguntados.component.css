@@ -9,7 +9,39 @@
     padding: 0;
     overflow: hidden;
 }
-
+.puntajes-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .puntajes-tabla {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Elimina el espacio entre bordes */
+  }
+  
+  .puntajes-tabla th,
+  .puntajes-tabla td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .puntajes-tabla th {
+    background-color: rgba(255, 204, 0, 0.2); /* Fondo para encabezados */
+    color: #ffcc00; /* Color dorado */
+  }
+  
+  .puntajes-tabla tr:hover {
+    background-color: rgba(255, 204, 0, 0.1); /* Fondo al pasar el ratón */
+  }
+  
+  .puntajes-tabla td {
+    color: #ffffff; /* Texto blanco */
+  }
+  
 .container {
     display: flex;
     flex-direction: column;

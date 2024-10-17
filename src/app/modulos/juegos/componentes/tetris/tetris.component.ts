@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { PuntajeService } from '../../../../servicios/puntaje.service';
 
 @Component({
   selector: 'app-tetris',
@@ -7,14 +8,17 @@ import { Router } from '@angular/router';
   styleUrl: './tetris.component.css'
 })
 export class TetrisComponent implements OnInit{
-  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+@ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  private contexto!: CanvasRenderingContext2D;
-  private TAMAÑO_BLOQUE = 20;
-  private ANCHO_TABLERO = 14;
-  private ALTO_TABLERO = 30;
+private contexto!: CanvasRenderingContext2D;
+private TAMAÑO_BLOQUE = 20;
+private ANCHO_TABLERO = 14;
+private ALTO_TABLERO = 30;
 
-  juegoTerminado!: boolean;
+
+juegoTerminado!: boolean;
+
+contadorGuardado : number = 0;
 
 puntaje = 0;
 private contadorCaida = 0;
@@ -37,7 +41,7 @@ private PIEZAS: number[][][] = [
   [[1, 0], [1, 0], [1, 1]]
 ];
 
-constructor(private router: Router){
+constructor(private router: Router, private puntuacion : PuntajeService){
   this.juegoTerminado = false;
 }
 ngOnInit() {
@@ -133,8 +137,10 @@ private solidificarPieza() {
   this.pieza.forma = this.PIEZAS[Math.floor(Math.random() * this.PIEZAS.length)];
 
   // Fin del juego
-  if (this.verificarColision()) {
+  if (this.verificarColision() && this.contadorGuardado == 0) {
+    this.contadorGuardado += 1;
     this.juegoTerminado = true;
+    this.puntuacion.guardarPuntaje(this.puntaje,"Tetris");
   }
 }
 
@@ -196,6 +202,7 @@ manejarTeclaPresionada(event: KeyboardEvent) {
 reiniciar(){
   this.juegoTerminado = false;
   this.puntaje = 0;
+  this.contadorGuardado = 0;
   this.tablero.forEach((fila)=> fila.fill(0));
 }
 volverAlHome(){

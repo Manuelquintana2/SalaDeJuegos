@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PuntajeService } from '../../../../servicios/puntaje.service';
 
 interface Carta {
   valor: number;
@@ -34,7 +35,7 @@ export class MayorMenorComponent {
     "https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/doce_De_Espadas.jpg?alt=media&token=230a1927-b8e0-4423-a733-3699bdbee806"
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private puntuacion : PuntajeService) {
     this.iniciarJuego();
   }
 
@@ -82,6 +83,7 @@ export class MayorMenorComponent {
       this.resultado += ` Fin del juego. Puntos: ${this.puntos}`;
       this.siguienteCarta = null; // Termina el juego
       this.cartasRestantes = 0; // Deshabilita el botón de adivinar carta al final del juego
+      this.puntuacion.guardarPuntaje(this.puntos,"MayorMenor");
     }
   }
 

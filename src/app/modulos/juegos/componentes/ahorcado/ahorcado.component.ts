@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PuntajeService } from '../../../../servicios/puntaje.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ahorcado',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './ahorcado.component.css'
 })
 export class AhorcadoComponent {
+  sub!: Subscription;
   palabras: string[] = [
     'angular', 
     'typescript', 
@@ -32,7 +35,7 @@ export class AhorcadoComponent {
 ];
 imagenActual!:string; 
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private puntacion: PuntajeService) {
     this.iniciarNuevoJuego();
   }
 
@@ -62,13 +65,15 @@ imagenActual!:string;
         this.puntaje += 1;
       }
     }
+    if(this.estaJuegoTerminado()){
+      this.puntacion.guardarPuntaje(this.puntaje, "Ahorcado");
+    }
   }
   estaJuegoTerminado(): boolean {
     if(this.estaPalabraAdivinada())
       this.imagenActual = this.imagenesArray[7];
     return this.intentosIncorrectos >= this.maxIntentosIncorrectos || this.estaPalabraAdivinada();
   }
-
   estaPalabraAdivinada(): boolean {
     return this.palabraSeleccionada.split('').every(letra => this.letrasAdivinadas.includes(letra));
   }
