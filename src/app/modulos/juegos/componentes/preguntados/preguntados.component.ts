@@ -27,6 +27,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   resultado! : string;
   puntos: number = 0;
   puntajes: any[] = [];
+  listar:boolean = false;
 
   constructor(private preguntadosService: PreguntadosApiService, private router: Router, private puntuacion : PuntajeService) {
   }
@@ -39,6 +40,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   listarPuntajes(){
+    this.listar = !this.listar;
     this.suscripcion = this.puntuacion.obtenerPuntajes("Preguntados").subscribe((respuesta: any) => {
       // Asignar directamente a mensajes en lugar de usar push
       this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({

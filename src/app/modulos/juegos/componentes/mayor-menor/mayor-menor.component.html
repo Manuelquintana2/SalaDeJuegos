@@ -1,8 +1,34 @@
 <nav class="navbar">
   <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+  @if(listar){
+    <button (click)="listarPuntajes()"class="navbar-button">Dejar de listar</button>
+  }
+  @else{
+    <button (click)="listarPuntajes()"class="navbar-button">Listar puntajes</button>
+  }
 </nav>
-
 <div class="container">
+  @if(listar == true){
+    <div class="puntajes-container">
+      <h2>Puntajes del Mayor o Menor</h2>
+      <table class="puntajes-tabla">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Puntaje</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let puntaje of puntajes">
+            <td>{{ puntaje.usuario }}</td>
+            <td>{{ puntaje.puntaje }}</td>
+            <td>{{ puntaje.fecha }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  }
   <div class="juego">
     <h1>Juego: Mayor o Menor</h1>
     <div class="carta">

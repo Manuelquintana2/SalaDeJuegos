@@ -55,7 +55,7 @@ export class PuntajeService {
 
   obtenerPuntajes(juego:string): Observable<any[]>{
     let col = collection(this.fireStore,'puntajes');
-    let queryRef = query(col, where('juego', '==', juego), orderBy('timestamp', 'desc'), limit(10));
+    let queryRef = query(col, where('juego', '==', juego), orderBy('puntaje', 'desc'), limit(10));
     return collectionData(queryRef);    
   }
 }

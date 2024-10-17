@@ -1,13 +1,21 @@
+<nav class="navbar">
+  <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+  @if(listar){
+    <button type="button" (click)="listarPuntajes()" class="navbar-button">Dejar de listar</button>
+  }
+  @else{
+    <button type="button" (click)="listarPuntajes()" class="navbar-button">Listar puntajes</button>
+  }
+</nav>
 <div class="container">
-    <h1>Juego de Preguntados</h1>
-    <button (click)="listarPuntajes()">Listar puntajes</button>
+  @if(listar == true){
     <div class="puntajes-container">
       <h2>Puntajes de Preguntados</h2>
       <table class="puntajes-tabla">
         <thead>
           <tr>
-            <th>Emisor</th>
-            <th>Mensaje</th>
+            <th>Usuario</th>
+            <th>Puntaje</th>
             <th>Fecha</th>
           </tr>
         </thead>
@@ -20,6 +28,8 @@
         </tbody>
       </table>
     </div>
+  }
+    <h1>Juego de Preguntados</h1>
     <div *ngIf="personajeActual">
       <h2>Quien es este personaje?</h2>
       <img [src]="personajeActual.imagen" alt="Hero Image" class="hero-image" />
@@ -38,7 +48,6 @@
         <button (click)="reiniciarjuego()">Reiniciar juego</button>
       }
     </div>
-      <button (click)="volverAlHome()">Volver al Inicio</button>
       <footer>
         @if(personajeActual == null){
           <p>Personajes restantes: No quedan mas personajes</p> 

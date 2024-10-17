@@ -32,10 +32,13 @@ export class AhorcadoComponent {
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/5.jpg?alt=media&token=23d6926a-3153-4f4b-a76e-72b8e7043f63',
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/6.jpg?alt=media&token=6bce9077-54c5-4f9c-97c7-30daa93bb125',
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/win.gif?alt=media&token=1e89fdcc-0e11-4e3d-94f2-a965b0efc64b'
-];
-imagenActual!:string; 
+  ];
+  imagenActual!:string; 
+  listar: boolean = false;
+  suscripcion!: Subscription;
+  puntajes: any[] = [];
 
-  constructor(private router:Router, private puntacion: PuntajeService) {
+  constructor(private router:Router, private puntuacion: PuntajeService) {
     this.iniciarNuevoJuego();
   }
 
@@ -47,6 +50,19 @@ imagenActual!:string;
     this.puntaje = 0;
   }
 
+  listarPuntajes(){
+    this.listar = !this.listar;
+    this.suscripcion = this.puntuacion.obtenerPuntajes("Ahorcado").subscribe((respuesta: any) => {
+      // Asignar directamente a mensajes en lugar de usar push
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
+    });
+  }
   obtenerPalabraAleatoria(): string {
     return this.palabras[Math.floor(Math.random() * this.palabras.length)];
   }
@@ -66,7 +82,7 @@ imagenActual!:string;
       }
     }
     if(this.estaJuegoTerminado()){
-      this.puntacion.guardarPuntaje(this.puntaje, "Ahorcado");
+      this.puntuacion.guardarPuntaje(this.puntaje, "Ahorcado");
     }
   }
   estaJuegoTerminado(): boolean {

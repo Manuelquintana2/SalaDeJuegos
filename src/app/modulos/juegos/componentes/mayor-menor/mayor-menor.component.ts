@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PuntajeService } from '../../../../servicios/puntaje.service';
+import { Subscription } from 'rxjs';
 
 interface Carta {
   valor: number;
@@ -34,6 +35,9 @@ export class MayorMenorComponent {
     "https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/once_De_Espadas.jpg?alt=media&token=3c09dcb1-6062-41c6-ade2-6a4034f59bc9",
     "https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/doce_De_Espadas.jpg?alt=media&token=230a1927-b8e0-4423-a733-3699bdbee806"
   ];
+  listar: boolean = false;
+  suscripcion!: Subscription;
+  puntajes: any[] = [];
 
   constructor(private router: Router, private puntuacion : PuntajeService) {
     this.iniciarJuego();
@@ -48,6 +52,19 @@ export class MayorMenorComponent {
     this.cartasRestantes = this.mazo.length+1;
   }
 
+  listarPuntajes(){
+    this.listar = !this.listar;
+    this.suscripcion = this.puntuacion.obtenerPuntajes("MayorMenor").subscribe((respuesta: any) => {
+      // Asignar directamente a mensajes en lugar de usar push
+      this.puntajes = respuesta.map((item: { usuario: any; puntaje: any; fecha: any; juego:any; timestamp : any }) => ({
+        usuario: item.usuario,
+        fecha: item.fecha,
+        puntaje: item.puntaje,
+        juego: item.juego,
+        timestamp: item.timestamp 
+      }));
+    });
+  }
   generarMazo(): Carta[] {
     const mazo: Carta[] = [];
     for (let i = 1; i <= 12; i++) {
