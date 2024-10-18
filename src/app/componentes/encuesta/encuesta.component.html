@@ -1,0 +1,69 @@
+<body>
+    <nav class="navbar">
+        <button type="button" (click)="volverAlHome()" class="navbar-button">Volver al home</button>
+      </nav>
+    <form [formGroup]="form" (ngSubmit)="enviar()">
+        <div>
+            <label for="nombreCompleto">Nombre Completo:</label>
+            <input id="nombreCompleto" type="text" formControlName="nombreCompleto" required>
+            <div *ngIf="form.get('nombreCompleto')?.invalid && (form.get('nombreCompleto')?.touched || form.get('nombreCompleto')?.dirty)">
+                <div class="error-message" *ngIf="form.get('nombreCompleto')?.errors?.['required']">El nombre completo es requerido.</div>
+                <div class="error-message" *ngIf="form.get('nombreCompleto')?.errors?.['pattern']">Solo se permiten letras.</div>
+            </div>
+        </div>
+    
+        <div>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" formControlName="edad" required>
+            <div *ngIf="form.get('edad')?.invalid && (form.get('edad')?.touched || form.get('edad')?.dirty)">
+                <div class="error-message" *ngIf="form.get('edad')?.errors?.['required']">La edad es requerida.</div>
+                <div class="error-message" *ngIf="form.get('edad')?.errors?.['min'] || form.get('edad')?.errors?.['max']">
+                    La edad debe estar entre 18 y 99 años.
+                </div>
+            </div>
+        </div>
+    
+        <div>
+            <label for="numeroTelefonico">Número Telefónico:</label>
+            <input id="numeroTelefonico" type="text" formControlName="numeroTelefonico" required>
+            <div *ngIf="form.get('numeroTelefonico')?.invalid && (form.get('numeroTelefonico')?.touched || form.get('numeroTelefonico')?.dirty)">
+                <div class="error-message" *ngIf="form.get('numeroTelefonico')?.errors?.['required']">El número telefónico es requerido.</div>
+                <div class="error-message" *ngIf="form.get('numeroTelefonico')?.errors?.['pattern']">10 dígitos sin espacios ni letras.</div>
+            </div>
+        </div>
+    
+        <div>
+            <label for="comentarios">¿Qué le pareció la página?</label>
+            <textarea id="comentarios" formControlName="comentarios" rows="4" required></textarea>
+            <div *ngIf="form.get('comentarios')?.invalid && (form.get('comentarios')?.touched || form.get('comentarios')?.dirty)">
+                <div class="error-message" *ngIf="form.get('comentarios')?.errors?.['required']">Este campo es requerido.</div>
+            </div>
+        </div>
+    
+        <div>
+            <label>¿Recomendaría esta página?</label>
+            <div>
+                <label>
+                    <input type="radio" formControlName="recomendar" value="Sí" required> Sí
+                </label>
+                <label>
+                    <input type="radio" formControlName="recomendar" value="No" required> No
+                </label>
+                <div *ngIf="form.get('recomendar')?.invalid && (form.get('recomendar')?.touched || form.get('recomendar')?.dirty)">
+                    <div class="error-message">Es necesario seleccionar una opción.</div>
+                </div>
+            </div>
+        </div>
+    
+        <div>
+            <label>
+                <input type="checkbox" formControlName="consentimientoDatos" required> Consiento el uso de mis datos personales.
+            </label>
+            <div *ngIf="form.get('consentimientoDatos')?.invalid && (form.get('consentimientoDatos')?.touched || form.get('consentimientoDatos')?.dirty)">
+                <div class="error-message">Debes consentir el uso de tus datos.</div>
+            </div>
+        </div>
+    
+        <button type="submit" [disabled]="form.invalid">Enviar</button>
+    </form>
+</body>

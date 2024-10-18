@@ -1,0 +1,106 @@
+:host {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita barras de desplazamiento */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo más transparente */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra estándar */
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: auto; /* Centrado */
+    color: #333; /* Texto oscuro para una mejor legibilidad */
+}
+
+label {
+    font-weight: bold;
+    color: #333; /* Color del texto */
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border: 1px solid #ff4081; /* Color en foco */
+}
+
+.error-message {
+    color: red; /* Color rojo para errores */
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    margin-top: 1px;
+    margin-bottom: 6px;
+}
+
+button {
+    background: linear-gradient(135deg, #ff4081, #ff6f20);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff6f20, #ff4081);
+}
+
+button:disabled {
+    background: gray; /* Color cuando está deshabilitado */
+    cursor: not-allowed; /* Cursor de no permitido */
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre checkbox/radio y texto */
+}
+
+.navbar {
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  .navbar-button {
+    float: right; /*Botón a la derecha */
+    background: linear-gradient(135deg, #ff4081, #ff6f20);
+    color: #ffffff;
+    margin-top: 30px;
+    margin-right: 30px;
+    text-decoration: none;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-weight: bold;
+  }
+  

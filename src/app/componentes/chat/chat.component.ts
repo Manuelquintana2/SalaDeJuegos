@@ -17,30 +17,28 @@ export class ChatComponent implements OnInit, OnDestroy  {
 
   usuarioLogeado:any;
   sub!: Subscription;
-  mensajes: any[] = [
-    
-  ];
+  mensajes: any[] = [];
   nuevoMensaje: string = '';
   
   constructor(private fireBaseService: FirebaseService, private fireStore : Firestore) { }  // injectar el servicio de autenticación  //
 
-    ngOnInit(): void {
-      this.usuarioLogeado = this.fireBaseService.getCurrentUser();
-      const col = collection(this.fireStore, 'chat');
-      const filtererQuery = query(col, orderBy('timestamp', 'asc'));
+  ngOnInit(): void {
+    this.usuarioLogeado = this.fireBaseService.getCurrentUser();
+    const col = collection(this.fireStore, 'chat');
+    const filtererQuery = query(col, orderBy('timestamp', 'asc'));
 
-    this.sub = collectionData(filtererQuery).subscribe((respuesta: any) => {
-      // Asignar directamente a mensajes en lugar de usar push
-      this.mensajes = respuesta.map((item: { usuario: any; id: any; mensaje: any; fecha: any; timestamp : any }) => ({
-        emisor: item.usuario,
-        idEmisor: item.id,  // para identificar al emisor en el mensaje
-        texto: item.mensaje,
-        fecha: item.fecha,
-        timestamp: item.timestamp 
-      }));
-      this.scrollToBottom();
-    });
-    };
+  this.sub = collectionData(filtererQuery).subscribe((respuesta: any) => {
+
+    this.mensajes = respuesta.map((item: { usuario: any; id: any; mensaje: any; fecha: any; timestamp : any }) => ({
+      emisor: item.usuario,
+      idEmisor: item.id,  // para identificar al emisor en el mensaje
+      texto: item.mensaje,
+      fecha: item.fecha,
+      timestamp: item.timestamp 
+    }));
+    this.scrollToBottom();
+  });
+  };
   
   enviarMensaje(){
     let fecha = new Date();

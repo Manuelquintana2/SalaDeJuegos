@@ -31,6 +31,9 @@ export class HomeComponent implements OnInit {
   irARegister() {
     this.router.navigate(['/register']);
   }
+  irAEncuesta(){
+    this.router.navigate(['/encuesta']);
+  }
 
   async logout() {
     await this.firebaseService.logout();
