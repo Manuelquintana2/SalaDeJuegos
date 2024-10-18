@@ -29,13 +29,13 @@ body::-webkit-scrollbar {
 .app-quien-soy {
   padding: 20px;
   border-radius: 10px;
-  margin: 20px; /* Añade un margen para evitar que el contenido toque los bordes */
+  margin: 20px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
  }
 
 button {
-  position: fixed; /* Cambia a posición fija */
+  position: fixed; 
   right: 30px; 
   top: 30px; 
   background: linear-gradient(135deg, #ff4081, #ff6f20);
@@ -51,8 +51,8 @@ button {
 .perfil-imagen {
   width: 150px;
   height: 150px;
-  border-radius: 50%; /* Circular */
-  border: 3px solid #ffcc00; /* Borde dorado */
+  border-radius: 50%; 
+  border: 3px solid #ffcc00; 
   margin-bottom: 20px;
 }
 
@@ -62,14 +62,14 @@ h1 {
 }
 
 h2 {
-  color: #ffffff; /* Color dorado */
+  color: #ffffff;
   margin: 15px 0;
 }
 
 .descripcion,
 .descripcion-juego {
   font-size: 1em;
-  color: #ffffff; /* Texto blanco */
+  color: #ffffff; 
   margin: 10px 0;
 }
 
@@ -89,11 +89,11 @@ h2 {
 .lista-item {
   display: flex;
   align-items: center;
-  margin: 10px; /* Espaciado entre elementos de la lista */
+  margin: 10px; 
   padding: 10px 15px; 
-  border-radius: 10px; /* Bordes redondeados más pronunciados */
+  border-radius: 10px; 
   background-color: rgba(255, 255, 255, 0.511); 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); 
   transition: transform 0.3s ease, background-color 0.3s ease; /* Efecto de transición al pasar el mouse */
 }
 
@@ -106,10 +106,10 @@ h2 {
 .lenguaje-imagen,
 .entorno-imagen,
 .framework-imagen {
-  width: 50px; /* Ajusta el ancho de la imagen */
+  width: 50px;
   height: auto; /* Mantiene la relación de aspecto */
   max-height: 50px; /* Limita la altura máxima para evitar deformaciones */
-  border-radius: 8px; /* Bordes redondeados */
+  border-radius: 8px; 
   transition: transform 0.3s ease; /* Efecto de transición al pasar el mouse */
 }
 
@@ -125,12 +125,12 @@ h2 {
 }
 
 a {
-  color: #ffffff; /* Color dorado */
-  text-decoration: none; /* Sin subrayado */
+  color: #ffffff; 
+  text-decoration: none; 
 }
 p{
-  color: #ffffff; /* Color dorado */
-  text-decoration: none; /* Sin subrayado */
+  color: #ffffff; 
+  text-decoration: none; 
 }
 
 a:hover {

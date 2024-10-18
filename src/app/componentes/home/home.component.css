@@ -22,7 +22,7 @@ html, body {
 }
 
 header {
-    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el encabezado */
+    background: rgba(0, 0, 0, 0.7); 
     padding: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
@@ -34,17 +34,17 @@ nav {
 }
 
 h1 {
-    font-size: 3rem; /* Tamaño del texto aumentado */
+    font-size: 2.5rem; 
     color: #ffffff; /* Color dorado */
-    text-align: center; /* Centrado */
+    text-align: center; 
     text-shadow: 
-        2px 2px 0 rgba(0, 0, 0, 0.5), /* Sombra para darle profundidad */
+        2px 2px 0 rgba(0, 0, 0, 0.5),
         4px 4px 0 rgba(255, 165, 0, 0.7); /* Sombra adicional para un efecto brillante */
-    letter-spacing: 2px; /* Espaciado entre letras */
+    letter-spacing: 2px;
     animation: glow 1.5s infinite alternate; /* Animación de brillo */
 }
 
-/* Animación de brillo */
+
 @keyframes glow {
     0% {
         text-shadow: 

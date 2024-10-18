@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
+    background-color: #1a1a1a; 
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,13 +19,13 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrando elementos */
+    align-items: center; 
 }
 
 h1 {
     font-size: 6rem;
     margin: 0;
-    color: #ff4081; /* Color vibrante */
+    color: #ff4081; 
 }
 
 h2 {
@@ -54,7 +54,7 @@ p {
 
 img {
     width: 100%;
-    max-width: 300px; /* Limita el ancho de la imagen */
+    max-width: 300px;
     margin-top: 20px;
     border-radius: 10px;
 }

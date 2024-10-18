@@ -10,7 +10,7 @@
     overflow: hidden;
 }
 .puntajes-container {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    background-color: rgba(0, 0, 0, 0.8); 
     padding: 20px;
     border-radius: 10px;
     margin-top: 5px; 
@@ -19,7 +19,7 @@
   }
   
   .puntajes-tabla {
-    width: 100%; /* Ancho completo */
+    width: 100%; 
     border-collapse: collapse; /* Elimina el espacio entre bordes */
   }
   
@@ -32,7 +32,7 @@
   
   .puntajes-tabla th {
     background-color: rgba(255, 204, 0, 0.2); /* Fondo para encabezados */
-    color: #ffcc00; /* Color dorado */
+    color: #ffcc00; 
   }
   
   .puntajes-tabla tr:hover {
@@ -40,7 +40,7 @@
   }
   
   .puntajes-tabla td {
-    color: #ffffff; /* Texto blanco */
+    color: #ffffff;
   }
   
 .container {

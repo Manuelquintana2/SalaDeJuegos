@@ -25,15 +25,15 @@ form {
     background-color: rgba(255, 255, 255, 0.8); /* Fondo más transparente */
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra estándar */
-    max-width: 600px; /* Ancho máximo del formulario */
-    margin: auto; /* Centrado */
-    color: #333; /* Texto oscuro para una mejor legibilidad */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: auto; 
+    color: #333; 
 }
 
 label {
     font-weight: bold;
-    color: #333; /* Color del texto */
+    color: #333; 
 }
 
 input[type="text"],
@@ -55,7 +55,7 @@ textarea:focus {
 
 .error-message {
     color: red; /* Color rojo para errores */
-    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    font-size: 0.9rem; 
     margin-top: 1px;
     margin-bottom: 6px;
 }
@@ -76,7 +76,7 @@ button:hover {
 }
 
 button:disabled {
-    background: gray; /* Color cuando está deshabilitado */
+    background: gray; 
     cursor: not-allowed; /* Cursor de no permitido */
 }
 
@@ -91,7 +91,7 @@ input[type="checkbox"] {
   }
   
   .navbar-button {
-    float: right; /*Botón a la derecha */
+    float: right;
     background: linear-gradient(135deg, #ff4081, #ff6f20);
     color: #ffffff;
     margin-top: 30px;

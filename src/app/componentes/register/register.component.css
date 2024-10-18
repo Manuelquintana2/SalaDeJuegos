@@ -1,6 +1,6 @@
 :host {
   display: block;
-  position: absolute; /* Cambiado a absolute para asegurar que ocupa toda la ventana */
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
@@ -37,7 +37,7 @@ html, body {
   margin: 0 auto; /* Centra el módulo horizontalmente */
   margin-top: 100px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para el módulo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   z-index: 1; /* Asegura que el módulo esté por encima de la imagen de fondo */
 }
 
@@ -100,17 +100,17 @@ html, body {
   text-decoration: none;
 }
 
-/* Estilo del div error-message */
+
 .error-message {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb; 
   color: #721c24; 
-  border-radius: 4px; /* Bordes redondeados */
+  border-radius: 4px; 
   padding: 12px; 
   margin: 12px 0; 
   font-size: 14px; 
-  text-align: center; /* Alineación del texto */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  text-align: center; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .navbar {
   overflow: hidden; 
@@ -119,7 +119,7 @@ html, body {
 }
 
 .navbar-button {
-  float: right; /* Botón a la derecha */
+  float: right; 
   background: linear-gradient(135deg, #ff4081, #ff6f20);
   color: #ffffff;
   margin-top: 30px;
