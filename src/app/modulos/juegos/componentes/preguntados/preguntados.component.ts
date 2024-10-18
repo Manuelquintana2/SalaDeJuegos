@@ -103,11 +103,9 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
   seleccionarOpcion(opcion: string) {
     if (opcion === this.personajeActual.nombre) {
-      console.log('Correcto!');
       this.puntos++;
     }
     else{
-      console.log('Incorrecto!');
       if(this.puntos > 0){
         this.puntos--;
       }
@@ -116,7 +114,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.personajeActual = this.siguientePersonaje;
     this.listaDeUsados.push(this.personajeActual);
     this.opciones = this.obtenerOpcionesAleatorias(4);
-    console.log(this.personajes);
 
     if (this.personajes.length > 0) {
       this.siguientePersonaje = this.personajes.pop() || null;
@@ -129,7 +126,9 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
   reiniciarjuego(){
     this.puntos = 0;
-    this.ngOnInit();
+    this.personajes = this.listaDeUsados.filter(el => el !== null);
+    this.listaDeUsados = [];
+    this.iniciarJuego();
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
