@@ -66,6 +66,9 @@ export class LoginComponent implements AfterViewInit {
     this.password = "hola123";
   }
 
+  irARegistrar() {
+    this.router.navigate(['/register'])
+  }
   volverAlHome(){
     this.router.navigate(['/home']);
   }
