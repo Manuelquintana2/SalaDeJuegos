@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from '../../servicios/firebase.service';
 import { addDoc, collection, collectionData, Firestore, limit, orderBy, query } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-encuesta',
@@ -55,6 +56,16 @@ export class EncuestaComponent implements OnInit  {
       let obj = this.form.value;
       obj["id"] = this.usuarioLogeado.uid
       addDoc(col, obj);
+      this.showSuccessAlert("Puedes completarla otra vez")
+      this.form.reset();
     }
+  }
+  private showSuccessAlert(message: string) {
+    return Swal.fire({
+      title: 'Encuesta enviada',
+      text: message,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }
