@@ -2,13 +2,14 @@ import { AfterViewInit, Component, OnInit, output } from '@angular/core';
 import { EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../servicios/firebase.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {addDoc, collection, Firestore } from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLinkActive,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -33,6 +34,7 @@ export class LoginComponent implements AfterViewInit {
       let col = collection(this.firestore, "logins");
       let obj = {fecha : new Date(), "user": this.email}
       addDoc(col, obj);
+      this.showSuccessAlert("Acceso a juegos")
       this.router.navigate(['/home']);
     });
   }catch(e:any){
@@ -71,5 +73,14 @@ export class LoginComponent implements AfterViewInit {
   }
   volverAlHome(){
     this.router.navigate(['/home']);
+  }
+
+  private showSuccessAlert(message: string) {
+    return Swal.fire({
+      title: 'Ingreso exitoso',
+      text: message,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }

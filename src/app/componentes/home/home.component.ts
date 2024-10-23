@@ -5,6 +5,7 @@ import { FirebaseService } from '../../servicios/firebase.service';
 import { RegisterComponent } from '../register/register.component';
 import { QuienSoyComponent } from '../quien-soy/quien-soy.component';
 import { ChatComponent } from '../chat/chat.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
     await this.firebaseService.logout();
     this.user = this.firebaseService.getCurrentUser();
     console.log('Usuario en el componente:', this.user);
+    this.showSuccessAlert("Inicia sesion para acceder a los juegos");
     this.router.navigate(['/home']);
   }
 
@@ -51,5 +53,13 @@ export class HomeComponent implements OnInit {
 
   mostrarChatFn(){
     this.mostrarChat = !this.mostrarChat;
+  }
+  private showSuccessAlert(message: string) {
+    return Swal.fire({
+      title: 'Cerraste sesion',
+      text: message,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }

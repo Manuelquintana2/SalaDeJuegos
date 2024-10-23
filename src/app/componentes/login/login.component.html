@@ -15,7 +15,7 @@
     @if(exito != true){
       <div class="error-message">{{ error }}</div>
     }
-    <button (click)="irARegistrar()" >¿No tienes cuenta? Registrate</button>
+    <a routerLink="/register" routerLinkActive="active-route">¿No tienes cuenta? !Registrate!</a>
   </div>
 </div>
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../servicios/firebase.service';
 import { Router } from '@angular/router';
 import {addDoc, collection, collectionData, where, orderBy, Firestore, limit, query, setDoc } from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +27,7 @@ export class RegisterComponent {
           let col = collection(this.firestore, "logins");
           let obj = {fecha : new Date(), "user": this.email}
           addDoc(col, obj)
+          this.showSuccessAlert("Te logueamos automaticamente")
           this.router.navigate(['/home']);
       });
     }
@@ -56,5 +58,13 @@ export class RegisterComponent {
   }
   volverAlHome(){
     this.router.navigate(['/home']);
+  }
+  private showSuccessAlert(message: string) {
+    return Swal.fire({
+      title: 'Registro exitoso',
+      text: message,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }
