@@ -16,7 +16,7 @@ html, body {
   height: 100%;
   overflow-y: scroll; /* Permite el desplazamiento vertical */
   scrollbar-width: none; /* Permite el desplazamiento del contenido */
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
+  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/home%2FfondoHome.jpg?alt=media&token=81da93b8-1409-45ce-8f2d-8faed0c20d25');
   background-size: cover; /* Asegura que la imagen cubra todo el fondo */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita la repetición de la imagen */
@@ -135,4 +135,25 @@ p{
 
 a:hover {
   text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

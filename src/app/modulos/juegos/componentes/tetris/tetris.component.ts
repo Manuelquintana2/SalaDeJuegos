@@ -15,6 +15,16 @@ export class TetrisComponent implements OnInit, OnDestroy{
   private TAMAÑO_BLOQUE = 20;
   private ANCHO_TABLERO = 14;
   private ALTO_TABLERO = 30;
+  private audio = new Audio()
+
+  private COLORES = [
+    'red',
+    'blue',
+    'green',
+    'orange',
+    'purple'
+  ];
+  
 
 
   juegoTerminado!: boolean;
@@ -24,7 +34,8 @@ export class TetrisComponent implements OnInit, OnDestroy{
   puntaje = 0;
   private contadorCaida = 0;
   private ultimaTiempo = 0;
-  private tablero: number[][] = this.crearTablero(this.ANCHO_TABLERO, this.ALTO_TABLERO);
+  private tablero: (string | 0)[][] = this.crearTablero(this.ANCHO_TABLERO, this.ALTO_TABLERO);
+
 
   private pieza = {
   posicion: { x: 5, y: 5 },
@@ -32,6 +43,7 @@ export class TetrisComponent implements OnInit, OnDestroy{
     [1, 1],
     [1, 1]
   ],
+  color: 'red'
   };
 
   private PIEZAS: number[][][] = [
@@ -47,6 +59,9 @@ export class TetrisComponent implements OnInit, OnDestroy{
 
   constructor(private router: Router, private puntuacion : PuntajeService){
     this.juegoTerminado = false;
+    this.audio.src = 'audio/tetrisMusica.mp3';
+    this.audio.load()
+    this.audio.loop = true; 
   }
   ngOnInit() {
     this.suscripcion = this.puntuacion.obtenerPuntajes("Tetris").subscribe((respuesta: any) => {
@@ -59,6 +74,7 @@ export class TetrisComponent implements OnInit, OnDestroy{
       }));
     });
     this.establecerValores();
+    this.reproducirMusica()
   }
 
   establecerValores(){
@@ -73,7 +89,7 @@ export class TetrisComponent implements OnInit, OnDestroy{
   listarPuntajes(){
     this.listar = !this.listar;
   }
-  private crearTablero(ancho: number, alto: number): number[][] {
+  private crearTablero(ancho: number, alto: number): (string | 0)[][] {
     return Array(alto).fill(0).map(() => Array(ancho).fill(0));
   }
 
@@ -108,8 +124,8 @@ export class TetrisComponent implements OnInit, OnDestroy{
 
     this.tablero.forEach((fila, y) => {
       fila.forEach((valor, x) => {
-        if (valor === 1) {
-          this.contexto.fillStyle = "yellow";
+        if (valor !== 0) {
+          this.contexto.fillStyle = valor as string; // el valor ahora es un color
           this.contexto.fillRect(x, y, 1, 1);
         }
       });
@@ -118,7 +134,7 @@ export class TetrisComponent implements OnInit, OnDestroy{
     this.pieza.forma.forEach((fila, y) => {
       fila.forEach((valor, x) => {
         if (valor === 1) {
-          this.contexto.fillStyle = "red";
+          this.contexto.fillStyle = this.pieza.color;
           this.contexto.fillRect(x + this.pieza.posicion.x, y + this.pieza.posicion.y, 1, 1);
         }
       });
@@ -137,10 +153,11 @@ export class TetrisComponent implements OnInit, OnDestroy{
   }
 
   private solidificarPieza() {
+
     this.pieza.forma.forEach((fila, y) => {
       fila.forEach((valor, x) => {
         if (valor === 1) {
-          this.tablero[y + this.pieza.posicion.y][x + this.pieza.posicion.x] = 1;
+          this.tablero[y + this.pieza.posicion.y][x + this.pieza.posicion.x] = this.pieza.color;  
         }
       });
     });
@@ -150,7 +167,9 @@ export class TetrisComponent implements OnInit, OnDestroy{
     this.pieza.posicion.y = 0;
 
     // Obtener forma aleatoria
-    this.pieza.forma = this.PIEZAS[Math.floor(Math.random() * this.PIEZAS.length)];
+    const indice = Math.floor(Math.random() * this.PIEZAS.length);
+    this.pieza.forma = this.PIEZAS[indice];
+    this.pieza.color = this.COLORES[indice];
 
     // Fin del juego
     if (this.verificarColision() && this.contadorGuardado == 0) {
@@ -164,9 +183,9 @@ export class TetrisComponent implements OnInit, OnDestroy{
     const filasAEliminar: number[] = [];
 
     this.tablero.forEach((fila, y) => {
-      if (fila.every(valor => valor === 1)) {
+      if (fila.every(valor => valor !== 0)) {
         filasAEliminar.push(y);
-      }
+      }      
     });
 
     filasAEliminar.forEach(y => {
@@ -227,6 +246,13 @@ export class TetrisComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();
+    this.audio.pause();
+    this.audio.src = '';
+    this.audio.load();
+  }
+
+  private reproducirMusica(){
+    this.audio.play()
   }
 }
 

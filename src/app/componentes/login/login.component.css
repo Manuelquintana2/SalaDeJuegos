@@ -7,8 +7,9 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Evita barras de desplazamiento */
+  overflow: hidden; 
 }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -22,23 +23,24 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
-  background-size: cover; /* Cubre toda el área del contenedor */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita la repetición de la imagen */
-  z-index: -1; /* Asegura que la imagen quede detrás del contenido */
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/home%2FfondoHome.jpg?alt=media&token=81da93b8-1409-45ce-8f2d-8faed0c20d25');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  z-index: -1; 
 }
 
 .module.form-module {
   position: relative;
-  width: 300px;
+  width: 90%; /* Ajusta el ancho */
+  max-width: 400px; /* Máximo ancho para pantallas grandes */
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el formulario */
+  background-color: rgba(255, 255, 255, 0.8);
   margin: 0 auto; 
   margin-top: 100px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para el módulo */
-  z-index: 1; /* Asegura que el módulo esté por encima de la imagen de fondo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1; 
 }
 
 .form h2 {
@@ -78,30 +80,6 @@ html, body {
   margin-bottom: 20px;
 }
 
-
-.pen-title {
-  padding: 50px 0;
-  text-align: center;
-  letter-spacing: 2px;
-}
-.pen-title h1 {
-  margin: 0 0 20px;
-  font-size: 48px;
-  font-weight: 300;
-}
-.pen-title span {
-  font-size: 12px;
-}
-.pen-title span .fa {
-  color: #33b5e5;
-}
-.pen-title span a {
-  color: #33b5e5;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-
 .error-message {
   background-color: #f8d7da; 
   border: 1px solid #f5c6cb; 
@@ -111,27 +89,37 @@ html, body {
   margin: 12px 0; 
   font-size: 14px; 
   text-align: center; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
+
 .navbar {
-  overflow: hidden;
   padding: 10px;
+  text-align: center; /* Centra el contenido */
 }
 
 .navbar-button {
-  float: right; 
   background: linear-gradient(135deg, #ff4081, #ff6f20);
   color: #ffffff;
-  margin-top: 30px;
-  margin-right: 30px;
-  text-decoration: none;
-  padding: 15px 20px;
+  padding: 15px 30px; /* Aumenta el padding */
   border: none;
   border-radius: 8px;
   transition: transform 0.3s ease, background 0.3s ease;
   font-weight: bold;
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer;
+  margin: 10px 0; /* Espacio superior e inferior */
+  display: inline-block; /* Permite centrado en el navbar */
 }
-.navbar-button:hover{
+
+.navbar-button:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #ff6f20, #ff4081);
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+  .navbar-button {
+    width: 100%; /* Ocupa el ancho completo en móviles */
+    padding: 15px; /* Ajusta el padding */
+  }
 }

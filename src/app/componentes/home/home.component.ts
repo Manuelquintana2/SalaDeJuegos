@@ -6,26 +6,38 @@ import { RegisterComponent } from '../register/register.component';
 import { QuienSoyComponent } from '../quien-soy/quien-soy.component';
 import { ChatComponent } from '../chat/chat.component';
 import Swal from 'sweetalert2';
+import { StorageService } from '../../servicios/storage.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LoginComponent, RegisterComponent, QuienSoyComponent,ChatComponent],
+  imports: [LoginComponent, RegisterComponent, CommonModule ,QuienSoyComponent,ChatComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
+  cargando = true;
   mostrarQuienSoy = false;
   mostrarChat = false;
   user!:any;
+  imagenAhorcado!: string;
+  imagenMayorMenor!: string;
+  imagenPreguntados!: string;
+  imagenTetris!: string;
 
-  constructor(private router: Router, private firebaseService: FirebaseService) {}
+  constructor(private router: Router, private firebaseService: FirebaseService, private storageService: StorageService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
       this.user = this.firebaseService.getCurrentUser();
       console.log('Usuario en el componente:', this.user);
-  }
+      this.imagenAhorcado = await this.storageService.obtenerImagen('juegos/ahorcado/Ahorcado6.jpg');
+      this.imagenMayorMenor = await this.storageService.obtenerImagen('home/MayorMenor.jpg');
+      this.imagenPreguntados = await this.storageService.obtenerImagen('home/Preguntados.jpg');
+      this.imagenTetris = await this.storageService.obtenerImagen('tetris.png');
+      this.cargando = false;
+    }
   irALogin(){
     this.router.navigate(['/login']);
   }

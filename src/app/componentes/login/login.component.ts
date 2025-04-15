@@ -25,7 +25,6 @@ export class LoginComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     console.log("login");
   }
-  
 
   async login() {
   try{

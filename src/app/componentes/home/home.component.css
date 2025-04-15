@@ -7,7 +7,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita barras de desplazamiento */
 }
 
 html, body {
@@ -15,10 +14,16 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/istockphoto-1370682737-612x612.jpg?alt=media&token=bd718b42-50cc-486c-908e-5c61d697a1ea');
+    overflow-y: scroll; 
+    scrollbar-width: none; 
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-ab2c4.appspot.com/o/home%2FfondoHome.jpg?alt=media&token=81da93b8-1409-45ce-8f2d-8faed0c20d25');
     background-size: cover; /* Asegura que la imagen cubra todo el fondo */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+body::-webkit-scrollbar {
+display: none; /* Oculta el scrollbar */
 }
 
 header {
@@ -29,21 +34,22 @@ header {
 
 nav {
     display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten */
     justify-content: space-between;
     align-items: center;
+    padding: 10px; /* Agrega un poco de padding */
 }
 
 h1 {
     font-size: 2.5rem; 
-    color: #ffffff; /* Color dorado */
+    color: #ffffff; 
     text-align: center; 
     text-shadow: 
         2px 2px 0 rgba(0, 0, 0, 0.5),
-        4px 4px 0 rgba(255, 165, 0, 0.7); /* Sombra adicional para un efecto brillante */
+        4px 4px 0 rgba(255, 165, 0, 0.7); 
     letter-spacing: 2px;
-    animation: glow 1.5s infinite alternate; /* Animación de brillo */
+    animation: glow 1.5s infinite alternate; 
 }
-
 
 @keyframes glow {
     0% {
@@ -63,7 +69,9 @@ h1 {
 ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten */
+    gap: 10px; /* Reduce el espacio en pantallas pequeñas */
+    padding: 0; /* Elimina el padding del ul */
 }
 
 ul li {
@@ -86,6 +94,21 @@ ul li a:hover,
 ul li button:hover {
     transform: scale(1.1);
     background: linear-gradient(135deg, #ff6f20, #ff4081);
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem; /* Ajusta el tamaño del título */
+    }
+    
+    ul {
+        justify-content: center; /* Centra los botones */
+    }
+    
+    ul li {
+        margin: 5px 0; /* Añade margen entre los botones */
+    }
 }
 
 h3 {
@@ -160,3 +183,24 @@ h3 {
 .game-card button:hover {
     background: linear-gradient(135deg, #ff6f20, #ff4081);
 }
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: girar 1s linear infinite;
+  }
+  
+  @keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
