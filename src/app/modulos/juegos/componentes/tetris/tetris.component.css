@@ -83,6 +83,17 @@ section{
   margin: 0 10px;
 }
 
+.arrow-button {
+  background: linear-gradient(135deg, #ff4081, #ff6f20);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-size: 1rem;
+}
+
 .navbar-button:hover {
   transform: scale(1.05);
   background: linear-gradient(135deg, #ff6f20, #ff4081);
