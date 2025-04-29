@@ -195,7 +195,7 @@ export class TetrisComponent implements OnInit, OnDestroy{
     });
   }
 
-  // Manejador de eventos para las teclas
+  // // Manejador de eventos para las teclas
   manejarTeclaPresionada(event: KeyboardEvent) {
     if (event.key === "ArrowLeft") {
       this.pieza.posicion.x--;
@@ -234,6 +234,10 @@ export class TetrisComponent implements OnInit, OnDestroy{
     }
   }
 
+  mover(direccion: string) {
+    const event = { key: direccion } as KeyboardEvent;
+    this.manejarTeclaPresionada(event);
+  }
   reiniciar(){
     this.juegoTerminado = false;
     this.puntaje = 0;

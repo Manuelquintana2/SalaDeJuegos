@@ -96,6 +96,9 @@ section {
 
 canvas {
   border: 1px solid black;
+  border: 1px solid black;
+  max-width: 100%;
+  height: auto;
 }
 
 span {
@@ -105,13 +108,4 @@ span {
 h2 {
   margin: 0px 0; /* Espaciado superior e inferior */
 }
-.button {
-  background: linear-gradient(135deg, #ff4081, #ff6f20);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  margin: 0 5px;
-}
+

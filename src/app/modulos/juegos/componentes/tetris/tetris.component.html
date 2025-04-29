@@ -31,6 +31,15 @@
   }
   <section>
     <canvas #canvas></canvas>
+    <div class="arrow-buttons">
+      <button (click)="mover('ArrowUp')" class="navbar-button">↑</button>
+      <div>
+        <button (click)="mover('ArrowLeft')" class="navbar-button">←</button>
+        <button (click)="mover('ArrowDown')" class="navbar-button">↓</button>
+        <button (click)="mover('ArrowRight')" class="navbar-button">→</button>
+      </div>
+    </div>
+    
     @if(juegoTerminado == false){
       <span>Puntos: {{puntaje}}</span>
     }
